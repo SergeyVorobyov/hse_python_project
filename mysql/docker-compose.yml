@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: py_project_mysql
+    environment:
+      - MYSQL_DATABASE=mysql_db
+      - MYSQL_ROOT_PASSWORD=myrootpwd
+      - MYSQL_USER=student
+      - MYSQL_PASSWORD=student
+    ports:
+      - '3305:3306'
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./mysql_init_db.sql:/docker-entrypoint-initdb.d/mysql_init_db.sql
+      
+volumes:
+  mysql_data:
+    driver: local

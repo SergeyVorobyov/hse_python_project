@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: py_project_postgres
+    environment:
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student
+      POSTGRES_DB: postgres_db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5430:5432"
+    volumes:
+      - ./postgres_init_db.sql:/docker-entrypoint-initdb.d/postgres_init_db.sql
+      - ./pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    driver: local
